@@ -12,14 +12,16 @@ class handler(BaseHTTPRequestHandler):
 		url_bits = parse.urlsplit(s)
 		parsed_list = parse.parse_qsl(url_bits.query)
 		new_dic = dict(parsed_list)
-		# if 'country' in new_dic:
-		# 	country = new_dic['country']
-		# 	url = 'https://restcountries.com/v3.1/name/'
-		# 	r = requests.get(url + country)
-		# 	data = r.json()
-		# 	capital = data[0]['capital'][0]
-		# 	message = f"{new_dic['country']}'s capital is {capital}"
-		if 'capital' in new_dic:
+		if 'country' in new_dic:
+			country = new_dic['country']
+			url = 'https://restcountries.com/v3.1/name/'
+			r = requests.get(url + country)
+			data = r.json()
+			capital = data[0]['capital'][0]
+			message = f"The capital of {new_dic['country']} is {capital}"
+
+		# change back elif when working
+		elif 'capital' in new_dic:
 			capital = new_dic['capital']
 			url = 'https://restcountries.com/v3.1/capital/'
 			r = requests.get(url + capital)
@@ -27,7 +29,7 @@ class handler(BaseHTTPRequestHandler):
 			country = data[0]['name']['common']
 			message = f"{new_dic['capital']} is the capital of {country}"
 		else:
-			message = "Please enter a country name or a capital name"
+			message = "Enter a valid country or capital name"
 
 		self.send_response(200)
 		self.send_header('Content-type', 'text/plain')
