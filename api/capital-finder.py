@@ -19,16 +19,15 @@ class handler(BaseHTTPRequestHandler):
 		# 	data = r.json()
 		# 	capital = data[0]['capital'][0]
 		# 	message = f"{new_dic['country']}'s capital is {capital}"
-		if 'capital' in new_dic:
-			capital = new_dic['capital']
-			url = 'https://restcountries.com/v3.1/capital/'
-			r = requests.get(url + capital)
-			data = r.json()
-			print(data)
-			country = data[0]['name']['common']
-			message = f"{new_dic['capital']} is the capital of {country}"
-		else:
-			message = "Please enter a country name or a capital name"
+		# if 'capital' in new_dic:
+		# 	capital = new_dic['capital']
+		# 	url = 'https://restcountries.com/v3.1/capital/'
+		# 	r = requests.get(url + capital)
+		# 	data = r.json()
+		# 	country = data[0]['name']['common']
+		# 	message = f"{new_dic['capital']} is the capital of {country}"
+		# else:
+		message = "Please enter a country name or a capital name"
 
 		self.send_response(200)
 		self.send_header('Content-type', 'text/plain')
